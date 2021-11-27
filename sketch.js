@@ -1,25 +1,36 @@
+var PointDraggables = [];
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  p_ancor1 = createVector(100, 300);
-  p_control1 = createVector(200, 100)
-  p_control2 = createVector(500, 500);
-  p_ancor2= createVector(700, 300);
+  p_ancor1 = new PointDraggable(100, 300);
+  p_control1 = new PointDraggable(200, 100);
+  p_control2 = new PointDraggable(500, 500);
+  p_ancor2= new PointDraggable(700, 300);
+
+  PointDraggables.push(p_ancor1);
+  PointDraggables.push(p_control1);
+  PointDraggables.push(p_control2);
+  PointDraggables.push(p_ancor2);
+}
+
+function mousePressed() {
+  for (var i = 0 ; i < PointDraggables.length ; i++ ) {
+    PointDraggables[i].clicked();   
+  }
+}
+
+function mouseReleased () {
+  for (var i = 0 ; i < PointDraggables.length ; i++ ) {
+    PointDraggables[i].released();   
+  }
 }
 
 function draw() {
   background(0);
 
-  //make p_control1 dinamic
-  p_control1.x= mouseX
-  p_control1.y= mouseY
-
-  //draw all points
-  stroke(255);
-  strokeWeight(24);
-  point(p_ancor1);
-  point(p_control1);
-  point(p_control2);
-  point(p_ancor2);  
+  for (var i = 0 ; i < PointDraggables.length ; i++ ) {
+    PointDraggables[i].display();    
+  }
 
   //draw bezier curve as a sum of lines
   let parts = 30;
