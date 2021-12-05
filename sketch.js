@@ -1,4 +1,6 @@
 var PointDraggables = [];
+var show_quadratic = false;
+var show_cubic = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -15,6 +17,12 @@ function setup() {
   PointDraggables.push(p4);
   PointDraggables.push(p5);
   PointDraggables.push(p6);
+
+  check_quadratic = createCheckbox('Show Quadract Lines', show_quadratic);
+  check_quadratic.changed(change_quadratic);
+
+  check_cubic= createCheckbox('Show Cubic Lines', show_cubic);
+  check_cubic.changed(change_cubic);
 }
 
 function mousePressed() {
@@ -29,6 +37,14 @@ function mouseReleased () {
   }
 }
 
+function change_quadratic(){
+  show_quadratic = !show_quadratic;
+}
+
+function change_cubic(){
+  show_cubic = !show_cubic;
+}
+
 function draw() {
   background(0);
 
@@ -36,6 +52,7 @@ function draw() {
     PointDraggables[i].display();    
   }
 
-  displayBezier(PointDraggables, 30);
+  displayBezier(PointDraggables, 100, show_quadratic, show_cubic);
+  console.log(check_quadratic.checked)
 
 }
