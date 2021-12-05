@@ -20,11 +20,11 @@ function bezierPonit( t, list_points) {
 
 function displayBezier (list_points, precision) {
     let delta = 1/precision;
-    
+
     noFill();
     beginShape();
     for(let t=0; t<=1.001; t+=delta) {
-        vectf = bezierPonit(t, PointDraggables);
+        vectf = bezierPonit(t, list_points);
       
         //print curve
         stroke(255);
