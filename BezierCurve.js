@@ -18,5 +18,23 @@ function bezierPonit( t, list_points) {
 }
 
 
+function displayBezier (list_points, precision) {
+    let delta = 1/precision;
+    
+    noFill();
+    beginShape();
+    for(let t=0; t<=1.001; t+=delta) {
+        vectf = bezierPonit(t, PointDraggables);
+      
+        //print curve
+        stroke(255);
+        strokeWeight(4);
+        vertex(vectf.x, vectf.y);
+      }
+    endShape();
+}
+
+
+
 
 

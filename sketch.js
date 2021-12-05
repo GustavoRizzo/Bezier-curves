@@ -36,18 +36,6 @@ function draw() {
     PointDraggables[i].display();    
   }
 
-  //draw bezier curve as a sum of lines
-  let parts = 80;
-  let delta = 1/parts;
-  stroke(255);
-  noFill();
-  beginShape();
-  for(let t=0; t<=1.001; t+=delta) {
-    vectf = bezierPonit(t, PointDraggables);
+  displayBezier(PointDraggables, 30);
 
-    //print curve
-    strokeWeight(4)
-    vertex(vectf.x, vectf.y);
-  }
-  endShape();
 }
